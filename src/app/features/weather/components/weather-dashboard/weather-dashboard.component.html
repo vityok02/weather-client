@@ -1,0 +1,15 @@
+<input type="text" [(ngModel)]="location" placeholder="Enter location" (keyup.enter)="loadWeather()" />
+<button (click)="loadWeather()">
+  Get Weather
+</button>
+
+<div *ngIf="hasError" class="error-message">
+  <p>Error fetching weather data. Please try again later.</p>
+</div>
+
+<div *ngIf="!hasError" class="error-message">
+  <p>{{ weather.location.name }}</p>
+  <p>{{ weather.current.temp_c }} °C</p>
+  <p>{{ weather.current.condition.text }}</p>
+  <p>{{ weather.current.feelslike_c }}</p>
+</div>
