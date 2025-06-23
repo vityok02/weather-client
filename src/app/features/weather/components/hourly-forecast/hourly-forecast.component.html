@@ -1,0 +1,16 @@
+<div
+  class="hourly-weather flex flex-col bg-white bg-opacity-50 p-2 overflow-x-auto rounded-md shadow-md mt-4 w-full"
+>
+  <h3 class="text-xl font-semibold px-2 mb-2">Hourly Forecast</h3>
+  <div class="flex flex-row gap-3 px-2">
+    <div
+      class="bg-white bg-opacity-80 rounded-md p-2 shadow min-w-[80px] text-center flex flex-col items-center"
+      *ngFor="let hour of hourlyWeather"
+    >
+      <p class="font-semibold text-sm">{{ hour.time.split(" ")[1] }}</p>
+      <img src="{{ hour.condition.icon }}" alt="Weather icon" class="w-8 h-8" />
+      <p class="text-lg">{{ hour.temp_c | number : "1.0-0" }}°</p>
+      <p class="text-xs text-blue-600">{{ hour.chance_of_rain }}% 🌧️</p>
+    </div>
+  </div>
+</div>

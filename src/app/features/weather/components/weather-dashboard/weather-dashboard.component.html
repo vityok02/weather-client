@@ -1,4 +1,4 @@
-<div class="dashboard">
+<div class="min-h-screen bg-[url('/assets/images/day.jpg')] bg-cover bg-center">
   <div class="pt-2 px-5">
     <div
       *ngIf="weatherResponse"
@@ -14,39 +14,18 @@
         {{ weatherResponse.location.region }}
       </h2>
 
-      <!-- 🌡️ Поточна погода + Прогноз -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-        <app-current-weather-summary [currentWeather]="weatherResponse.current"></app-current-weather-summary>
+        <app-current-weather-summary [currentWeather]="weatherResponse.current">
+        </app-current-weather-summary>
 
-        <!-- Прогноз -->
-        <app-forecast-summary
-          [forecast]="todayForecast"
-        ></app-forecast-summary>
+        <app-forecast-summary [forecast]="todayForecast">
+        </app-forecast-summary>
       </div>
 
-      <!-- ⏱️ Почасова -->
-      <div
-        class="hourly-weather flex flex-col bg-white bg-opacity-50 p-2 overflow-x-auto rounded-md shadow-md mt-4 w-full"
-      >
-        <h3 class="text-xl font-semibold px-2 mb-2">Hourly Forecast</h3>
-        <div class="flex flex-row gap-3 px-2">
-          <div
-            class="bg-white bg-opacity-80 rounded-md p-2 shadow min-w-[80px] text-center flex flex-col items-center"
-            *ngFor="let hour of getHours()"
-          >
-            <p class="font-semibold text-sm">{{ hour.time.split(" ")[1] }}</p>
-            <img
-              src="{{ hour.condition.icon }}"
-              alt="Weather icon"
-              class="w-8 h-8"
-            />
-            <p class="text-lg">{{ hour.temp_c | number : "1.0-0" }}°</p>
-            <p class="text-xs text-blue-600">{{ hour.chance_of_rain }}% 🌧️</p>
-          </div>
-        </div>
+      <div class="w-full max-w-4xl mx-auto">
+        <app-hourly-forecast [hourlyWeather]="getHours()"></app-hourly-forecast>
       </div>
 
-      <!-- 📊 Графік -->
       <div class="mt-4 bg-white bg-opacity-50 rounded-md p-4 shadow w-full">
         <h3 class="text-xl font-semibold mb-2">Hourly Temperature Chart</h3>
         <app-weather-graph [hourlyWeather]="getHours()"></app-weather-graph>

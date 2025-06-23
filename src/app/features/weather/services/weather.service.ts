@@ -1,3 +1,4 @@
+import { AstronomyResponse } from './../models/astronomy/astronomy-response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
