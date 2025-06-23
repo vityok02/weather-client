@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
 import { CurrentWeatherDetailsComponent } from './features/weather/components/current-weather-summary/current-weather-summary.component';
 import { TodayForecastComponent } from './features/weather/components/today-forecast/today-forecast.component';
 import { ForecastSummaryComponent } from './features/weather/components/forecast-summary/forecast-summary.component';
+import { HourlyForecastComponent } from './features/weather/components/hourly-forecast/hourly-forecast.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ForecastSummaryComponent } from './features/weather/components/forecast
     WeatherGraphComponent,
     CurrentWeatherDetailsComponent,
     TodayForecastComponent,
-    ForecastSummaryComponent
+    ForecastSummaryComponent,
+    HourlyForecastComponent
   ],
   imports: [
     BrowserModule,
