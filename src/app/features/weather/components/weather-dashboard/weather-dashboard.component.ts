@@ -1,8 +1,6 @@
 import { WeatherService } from './../../services/weather.service';
 import { Component, OnInit } from '@angular/core';
-import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 
-import { ChartConfiguration } from 'chart.js';
 import { WeatherApiResponse } from '../../models/weather/weather-api-response';
 import { SearchLocation } from '../../models/weather/search-location';
 import { HourlyWeather } from '../../models/weather/hourly-weather';
@@ -26,33 +24,6 @@ export class WeatherDashboardComponent implements OnInit {
   get feelsLikeTemp() {
     return this.weatherResponse?.current?.feelslike_c;
   }
-
-  chartData: ChartConfiguration<'line'>['data'] = {
-    labels: [],
-    datasets: [
-      {
-        data: [],
-        label: 'Temperature °C',
-        fill: true,
-        tension: 0.4,
-        borderColor: '#42A5F5',
-        backgroundColor: 'rgba(66,165,245,0.3)',
-      },
-    ]
-  };
-
-  chartOptions: ChartConfiguration<'line'>['options'] = {
-    responsive: true,
-    plugins: {
-      legend: { display: true },
-    },
-    scales: {
-      x: {},
-      y: {
-        beginAtZero: true
-      }
-    }
-  };
 
   constructor(private weatherService: WeatherService) { }
 
@@ -81,19 +52,6 @@ export class WeatherDashboardComponent implements OnInit {
         localStorage.setItem('location', JSON.stringify(this.location));
 
         const hours = this.getHours();
-        this.chartData = {
-          labels: hours.map(h => h.time.split(' ')[1]),
-          datasets: [
-            {
-              data: hours.map(h => h.temp_c),
-              label: 'Temperature °C',
-              fill: true,
-              tension: 0.4,
-              borderColor: '#42A5F5',
-              backgroundColor: 'rgba(66,165,245,0.3)',
-            }
-          ]
-        };
       },
       error: (error) => {
         console.error('Error fetching weather data:', error);
