@@ -8,6 +8,7 @@ import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
   templateUrl: './weather-search.component.html',
   styleUrls: ['./weather-search.component.css']
 })
+
 export class WeatherSearchComponent {
   @Input() location!: SearchLocation | null;
   @Output() searchLocation = new EventEmitter<SearchLocation>();
