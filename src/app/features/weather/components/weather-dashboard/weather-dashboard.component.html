@@ -1,15 +1,55 @@
-<input type="text" [(ngModel)]="location" placeholder="Enter location" (keyup.enter)="loadWeather()" />
-<button (click)="loadWeather()">
-  Get Weather
-</button>
+<div class="dashboard">
+  <div class="pt-2 px-5">
+    <div
+      *ngIf="weatherResponse"
+      class="flex flex-col bg-white bg-opacity-50 items-center rounded-md shadow-md text-xl p-4"
+    >
+      <app-weather-search
+        [location]="location"
+        (searchLocation)="onSearchLocation($event)"
+      ></app-weather-search>
 
-<div *ngIf="hasError" class="error-message">
-  <p>Error fetching weather data. Please try again later.</p>
-</div>
+      <p>{{ weatherResponse.location }}</p>
+      <div class="flex flex-row items-center justify-between w-full">
+        <div>
+          <p>{{ weatherResponse.current.temp_c }} °C</p>
+          <p>{{ weatherResponse.current.condition.text }}</p>
+        </div>
+        <div>
+          <img
+            src="{{ weatherResponse.current.condition.icon }}"
+            alt="Weather icon"
+            class="w-[120px] h-[120px]"
+          />
+          <p>
+            {{ todayForecast.maxtemp_c }} / {{ todayForecast.mintemp_c }} Feels
+            like {{ feelsLikeTemp }} °C
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="hourly-weather flex flex-col bg-white bg-opacity-50 p-2 overflow-x-auto rounded-md shadow-md mt-2"
+    >
+      <div class="flex flex-row">
+        <div
+          class="hour-card"
+          *ngFor="let hour of weatherResponse ? getHours() : []"
+        >
+          <p>{{ hour.time.split(" ")[1] }}</p>
+          <img src="{{ hour.condition.icon }}" alt="Weather icon" />
+          <p>{{ hour.temp_c | number : "1.0-0" }} °C</p>
+          <p>{{ hour.chance_of_rain }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div *ngIf="!hasError" class="error-message">
-  <p>{{ weather.location.name }}</p>
-  <p>{{ weather.current.temp_c }} °C</p>
-  <p>{{ weather.current.condition.text }}</p>
-  <p>{{ weather.current.feelslike_c }}</p>
+  <canvas
+    baseChart
+    [data]="chartData"
+    [options]="chartOptions"
+    chartType="line"
+    class="flex-grow w-full h-64 bg-white-10"
+  ></canvas>
 </div>

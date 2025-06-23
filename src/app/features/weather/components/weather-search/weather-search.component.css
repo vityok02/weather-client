@@ -1,0 +1,12 @@
+::ng-deep .p-autocomplete {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+}
+
+::ng-deep .p-autocomplete input {
+  width: 100% !important;
+  display: flex;
+  flex-grow: 1;
+  box-sizing: border-box;
+}
