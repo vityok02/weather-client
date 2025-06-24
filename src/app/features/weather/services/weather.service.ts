@@ -25,4 +25,10 @@ export class WeatherService {
 
     return this.httpClient.get<SearchLocation[]>(path)
   }
+
+  getAstronomy(latitude: number, longitude: number): Observable<AstronomyResponse> {
+    const path = `${environment.weatherApiUrl}/astronomy.json?key=${environment.apiKey}&q=${latitude},${longitude}`;
+
+    return this.httpClient.get<AstronomyResponse>(path);
+  }
 }

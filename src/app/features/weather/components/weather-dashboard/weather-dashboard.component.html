@@ -1,7 +1,10 @@
-<div class="min-h-screen bg-[url('/assets/images/day.jpg')] bg-cover bg-center">
+<div
+  *ngIf="weatherResponse && astronomyResponse"
+  class="min-h-screen bg-cover bg-center"
+  [style.backgroundImage]="'url(' + getBackgroundImagePath() + ')'"
+>
   <div class="pt-2 px-5">
     <div
-      *ngIf="weatherResponse"
       class="flex flex-col bg-white bg-opacity-50 items-center rounded-md shadow-md text-xl p-4"
     >
       <app-weather-search
