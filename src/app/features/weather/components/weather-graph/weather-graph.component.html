@@ -1,7 +1,20 @@
-  <canvas
-    baseChart
-    [data]="chartData"
-    [options]="chartOptions"
-    chartType="line"
-    class="flex-grow bg-white bg-opacity-80 rounded-md shadow-md !h-full !w-full"
-  ></canvas>
+<div class="flex flex-row justify-between">
+  <h3 class="text-xl font-semibold mb-2">
+    {{ "weather.hourly_forecast.chart.title" | translate }}
+  </h3>
+  <p-dropdown
+    [options]="parameters"
+    [(ngModel)]="selectedParameter"
+    optionLabel="label"
+    optionValue="value"
+    (onChange)="setChartParameter($event)"
+    class="w-48"
+  ></p-dropdown>
+</div>
+<canvas
+  baseChart
+  [data]="chartData"
+  [options]="chartOptions"
+  chartType="line"
+  class="flex-grow bg-white bg-opacity-80 rounded-md shadow-md !h-full !w-full"
+></canvas>

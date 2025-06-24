@@ -1,0 +1,34 @@
+{
+  "weather": {
+    "current": {
+      "title": "Поточна погода",
+      "temperature": "Температура",
+      "feels_like": "Відчувається як",
+      "humidity": "Вологість",
+      "wind": "Вітер",
+      "pressure": "Тиск",
+      "uv_index": "Індекс УФ",
+      "last_updated": "Останнє оновлення"
+    },
+    "forecast": {
+      "title": "Прогноз погоди",
+      "max_min": "Макс / Мін температура",
+      "avg_temp": "Середня температура",
+      "chance_of_rain": "Ймовірність дощу",
+      "avg_humidity": "Середня вологість",
+      "max_wind": "Максимальна швидкість вітру"
+    },
+    "hourly_forecast": {
+      "list": {
+        "title": "Погодинна погода"
+      },
+      "chart": {
+        "title": "Погодинний графік погоди",
+        "parameters": {
+          "temperature": "Температура",
+          "wind_speed": "Швидкість вітру"
+        }
+      }
+    }
+  }
+}

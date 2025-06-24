@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { HourlyWeather } from '../../models/weather/hourly-weather';
+import { DropdownChangeEvent } from 'primeng/dropdown';
+import { BaseChartDirective } from 'ng2-charts';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-weather-graph',
@@ -15,9 +18,20 @@ export class WeatherGraphComponent {
     this.updateChart();
   }
 
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
   get hourlyWeather(): HourlyWeather[] {
     return this._hourlyWeather;
   }
+
+  get parameters() {
+    return [
+      { label: this.translateService.instant('weather.hourly_forecast.chart.parameters.temperature'), value: 'Temperature' },
+      { label: this.translateService.instant('weather.hourly_forecast.chart.parameters.wind_speed'), value: 'Wind Speed' },
+    ];
+  }
+
+  selectedParameter: string = 'Temperature';
 
   chartData: ChartConfiguration<'line'>['data'] = {
     labels: this.hourlyWeather.map(h => h.time.split(' ')[1]),
@@ -46,8 +60,24 @@ export class WeatherGraphComponent {
     }
   };
 
+  constructor(private translateService: TranslateService) { }
+
+  setChartParameter(event: DropdownChangeEvent) {
+    this.selectedParameter = event.value;
+    this.updateChart();
+  }
+
   private updateChart() {
     this.chartData.labels = this.hourlyWeather.map(h => h.time.split(' ')[1]);
-    this.chartData.datasets[0].data = this.hourlyWeather.map(h => h.temp_c);
+
+    if (this.selectedParameter === 'Temperature') {
+      this.chartData.datasets[0].data = this.hourlyWeather.map(h => h.temp_c);
+      this.chartData.datasets[0].label = this.translateService.instant('weather.hourly_forecast.chart.parameters.temperature') + ' °C';
+    } else if (this.selectedParameter === 'Wind Speed') {
+      this.chartData.datasets[0].data = this.hourlyWeather.map(h => h.wind_kph);
+      this.chartData.datasets[0].label = this.translateService.instant('weather.hourly_forecast.chart.parameters.wind_speed') + ' kph';
+    }
+
+    this.chart?.update();
   }
 }

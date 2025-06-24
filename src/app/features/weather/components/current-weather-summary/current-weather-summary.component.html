@@ -1,5 +1,5 @@
 <div class="bg-white bg-opacity-50 rounded-md p-4 shadow">
-  <h3 class="text-xl font-semibold mb-2">Current Weather</h3>
+  <h3 class="text-xl font-semibold mb-2">{{ 'weather.current.title' | translate }}</h3>
 
   <div class="flex items-center justify-between">
     <div>
@@ -18,34 +18,34 @@
 
   <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
     <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
-      <p class="text-sm text-gray-600">Feels Like</p>
+      <p class="text-sm text-gray-600">{{ 'weather.current.feels_like' | translate }}</p>
       <p class="text-xl font-semibold">{{ currentWeather.feelslike_c }} °C</p>
     </div>
 
     <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
-      <p class="text-sm text-gray-600">Humidity</p>
+      <p class="text-sm text-gray-600">{{ 'weather.current.humidity' | translate }}</p>
       <p class="text-xl font-semibold">{{ currentWeather.humidity }}%</p>
     </div>
 
     <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
-      <p class="text-sm text-gray-600">Wind</p>
+      <p class="text-sm text-gray-600">{{ 'weather.current.wind' | translate }}</p>
       <p class="text-xl font-semibold">{{ currentWeather.wind_kph }} km/h</p>
     </div>
 
     <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
-      <p class="text-sm text-gray-600">Pressure</p>
+      <p class="text-sm text-gray-600">{{ 'weather.current.pressure' | translate }}</p>
       <p class="text-xl font-semibold">{{ currentWeather.pressure_mb }} mb</p>
     </div>
 
     <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
-      <p class="text-sm text-gray-600">UV Index</p>
+      <p class="text-sm text-gray-600">{{ 'weather.current.uv_index' | translate }}</p>
       <p class="text-xl font-semibold">
         {{ currentWeather.uv }}
       </p>
     </div>
 
     <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
-      <p class="text-sm text-gray-600">Last Updated</p>
+      <p class="text-sm text-gray-600">{{ 'weather.current.last_updated' | translate }}</p>
       <p class="text-sm text-gray-500">
         {{ currentWeather.last_updated }}
       </p>
