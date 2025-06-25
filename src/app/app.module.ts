@@ -22,6 +22,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppMissingTranslationHandler } from './core/services/missing-translation.handler.ts.service';
 import { LanguageSwitcherComponent } from './features/weather/components/language-switcher/language-switcher.component';
+import { WeeklyForecastComponent } from './features/weather/components/weekly-forecast/weekly-forecast.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CurrentWeatherDetailsComponent,
     ForecastSummaryComponent,
     HourlyForecastComponent,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    WeeklyForecastComponent
   ],
   imports: [
     BrowserModule,

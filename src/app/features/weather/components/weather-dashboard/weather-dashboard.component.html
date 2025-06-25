@@ -23,15 +23,27 @@
         {{ weatherResponse.location.region }}
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-        <app-current-weather-summary [currentWeather]="weatherResponse.current">
-        </app-current-weather-summary>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+        <div class="bg-white bg-opacity-50 rounded-md p-4 shadow">
+          <app-current-weather-summary
+            [currentWeather]="weatherResponse.current"
+          >
+          </app-current-weather-summary>
+        </div>
 
-        <app-forecast-summary [forecast]="todayForecast">
-        </app-forecast-summary>
+        <div class="bg-white bg-opacity-50 rounded-md p-4 shadow">
+          <app-forecast-summary [forecast]="todayForecast">
+          </app-forecast-summary>
+        </div>
+
+        <div class="bg-white bg-opacity-50 rounded-md p-4 shadow">
+          <app-weekly-forecast
+            [forecast]="weatherResponse.forecast"
+          ></app-weekly-forecast>
+        </div>
       </div>
 
-      <div class="w-full max-w-4xl mx-auto">
+      <div class="w-full mx-auto">
         <app-hourly-forecast [hourlyWeather]="getHours()"></app-hourly-forecast>
       </div>
 

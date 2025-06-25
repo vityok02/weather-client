@@ -54,8 +54,10 @@ export class WeatherDashboardComponent implements OnInit {
       return;
     }
 
-    this.weatherService.getWeather(this.location?.lat, this.location?.lon, 2, this.currentLanguage).subscribe({
+    this.weatherService.getWeather(this.location?.lat, this.location?.lon, 7, this.currentLanguage).subscribe({
       next: (data) => {
+        console.log('Weather data loaded:', data);
+
         this.weatherResponse = data;
         this.hasError = false;
         localStorage.setItem('location', JSON.stringify(this.location));

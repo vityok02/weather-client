@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MissingTranslationHandlerTsService } from './missing-translation.handler.ts.service';
+import { AppMissingTranslationHandler } from './missing-translation.handler.ts.service';
 
 describe('MissingTranslationHandlerTsService', () => {
-  let service: MissingTranslationHandlerTsService;
+  let service: AppMissingTranslationHandler;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MissingTranslationHandlerTsService);
+    service = TestBed.inject(AppMissingTranslationHandler);
   });
 
   it('should be created', () => {

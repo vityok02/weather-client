@@ -1,9 +1,9 @@
 {
   "weather": {
     "current": {
-      "title": "Current Weather",
+      "title": "Current weather",
       "temperature": "Temperature",
-      "feels_like": "Feels Like",
+      "feels_like": "Feels like",
       "humidity": "Humidity",
       "wind": "Wind",
       "pressure": "Pressure",
@@ -11,22 +11,50 @@
       "last_updated": "Last Updated"
     },
     "forecast": {
-      "title": "Weather Forecast",
-      "max_min": "Max / Min Temperature",
-      "avg_temp": "Average Temperature",
-      "chance_of_rain": "Chance of Rain",
-      "avg_humidity": "Average Humidity",
-      "max_wind": "Max Wind Speed"
+      "summary": {
+        "title": "Forecast for today",
+        "max_min": "Max / Min temperature",
+        "avg_temp": "Average temperature",
+        "chance_of_rain": "Chance of rain",
+        "avg_humidity": "Average humidity",
+        "max_wind": "Max wind speed"
+      },
+      "weekly": {
+        "title": "Weekly weather forecast",
+        "days": {
+          "monday": "Monday",
+          "tuesday": "Tuesday",
+          "wednesday": "Wednesday",
+          "thursday": "Thursday",
+          "friday": "Friday",
+          "saturday": "Saturday",
+          "sunday": "Sunday"
+        },
+        "months": {
+          "january": "January",
+          "february": "February",
+          "march": "March",
+          "april": "April",
+          "may": "May",
+          "june": "June",
+          "july": "July",
+          "august": "August",
+          "september": "September",
+          "october": "October",
+          "november": "November",
+          "december": "December"
+        }
+      }
     },
     "hourly_forecast": {
       "list": {
-        "title": "Hourly Weather"
+        "title": "Hourly weather"
       },
       "chart": {
-        "title": "Hourly Weather Chart",
+        "title": "Hourly weather chart",
         "parameters": {
           "temperature": "Temperature",
-          "wind_speed": "Wind Speed"
+          "wind_speed": "Wind speed"
         }
       }
     }

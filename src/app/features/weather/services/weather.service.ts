@@ -18,7 +18,7 @@ export class WeatherService {
     let params = new HttpParams()
       .set('key', environment.apiKey)
       .set('q', `${latitude},${longitude}`)
-      .set('days', days.toString())
+      .set('days', '7')
       .set('aqi', 'no')
       .set('alerts', 'no');
 

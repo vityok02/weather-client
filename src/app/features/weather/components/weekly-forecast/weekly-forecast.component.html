@@ -1,0 +1,50 @@
+<h3 class="text-xl font-semibold mb-4 text-center">
+  {{ "weather.forecast.weekly.title" | translate }}
+</h3>
+
+<div class="flex flex-col gap-4">
+  <div
+    *ngFor="let day of forecast.forecastday"
+    class="flex items-center bg-white bg-opacity-70 rounded-md p-4 shadow"
+  >
+    <img
+      [src]="day.day.condition.icon"
+      alt="day.day.condition.text"
+      class="w-12 h-12 mr-4"
+    />
+
+    <div class="flex flex-col flex-grow">
+      <div class="flex justify-between items-center">
+        <p class="font-semibold text-sm">
+          {{
+            "weather.forecast.weekly.days." +
+              (day.date | date : "EEEE" | lowercase) | translate
+          }}
+        </p>
+
+        <p class="text-xs text-gray-600">
+          {{ day.date | date : "d" }}
+          {{
+            "weather.forecast.weekly.months." +
+              (day.date | date : "MMMM" | lowercase) | translate
+          }}
+        </p>
+      </div>
+
+      <div class="flex justify-between mt-1">
+        <p class="text-sm">
+          🌡 {{ day.day.maxtemp_c | number : "1.0-0" }}° /
+          {{ day.day.mintemp_c | number : "1.0-0" }}°
+        </p>
+
+        <p class="text-sm text-blue-600">
+          💧 {{ day.day.daily_chance_of_rain }}%
+        </p>
+
+        <p class="text-sm text-gray-700">
+          💨 {{ day.day.maxwind_kph }} {{ "units.wind_speed" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
