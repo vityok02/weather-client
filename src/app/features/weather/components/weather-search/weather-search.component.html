@@ -1,10 +1,12 @@
 <div class="flex flex-row justify-center gap-2 w-full">
   <p-autoComplete
-    [(ngModel)]="location"
+    [field]="'fullName'"
     [suggestions]="suggestions"
     (completeMethod)="search($event)"
     optionLabel="fullName"
     class="opacity-90 !w-80"
     (onSelect)="onSubmit()"
+    placeholder="{{ 'weather.search.placeholder' | translate }}"
+    [(ngModel)]="location"
   />
 </div>

@@ -4,7 +4,7 @@
 
 <div class="flex items-center justify-between">
   <div>
-    <p class="text-4xl font-bold">{{ currentWeather.temp_c }} °C</p>
+    <p class="text-4xl font-bold">{{ currentWeather.temp_c | number: "1.0-0" }} °C</p>
     <p class="text-md">
       {{ currentWeather.condition.text }}
     </p>
@@ -22,13 +22,15 @@
     <p class="text-sm text-gray-600">
       {{ "weather.current.feels_like" | translate }}
     </p>
-    <p class="text-xl font-semibold">{{ currentWeather.feelslike_c }} °C</p>
+
+    <p class="text-xl font-semibold">{{ currentWeather.feelslike_c | number: "1.0-0" }} °C</p>
   </div>
 
   <div class="bg-white bg-opacity-70 rounded-md p-3 text-center shadow-sm">
     <p class="text-sm text-gray-600">
       {{ "weather.current.humidity" | translate }}
     </p>
+
     <p class="text-xl font-semibold">{{ currentWeather.humidity }}%</p>
   </div>
 
@@ -36,6 +38,7 @@
     <p class="text-sm text-gray-600">
       {{ "weather.current.wind" | translate }}
     </p>
+
     <p class="text-xl font-semibold">
       {{ currentWeather.wind_kph }} {{ "units.wind_speed" | translate }}
     </p>
@@ -45,6 +48,7 @@
     <p class="text-sm text-gray-600">
       {{ "weather.current.pressure" | translate }}
     </p>
+
     <p class="text-xl font-semibold">
       {{ currentWeather.pressure_mb }} {{ "units.pressure" | translate }}
     </p>
@@ -54,6 +58,7 @@
     <p class="text-sm text-gray-600">
       {{ "weather.current.uv_index" | translate }}
     </p>
+
     <p class="text-xl font-semibold">
       {{ currentWeather.uv }}
     </p>
@@ -63,6 +68,7 @@
     <p class="text-sm text-gray-600">
       {{ "weather.current.last_updated" | translate }}
     </p>
+    
     <p class="text-sm text-gray-500">
       {{ currentWeather.last_updated }}
     </p>

@@ -25,7 +25,7 @@ import { LanguageSwitcherComponent } from './features/weather/components/languag
 import { WeeklyForecastComponent } from './features/weather/components/weekly-forecast/weekly-forecast.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({

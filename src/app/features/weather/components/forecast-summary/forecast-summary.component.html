@@ -9,7 +9,7 @@
     </p>
 
     <p class="text-lg font-semibold">
-      {{ forecast.maxtemp_c }}° / {{ forecast.mintemp_c }}°
+      {{ forecast.maxtemp_c | number: "1.0-0" }}° / {{ forecast.mintemp_c | number: "1.0-0" }}°
     </p>
   </div>
 
@@ -18,7 +18,7 @@
       {{ "weather.forecast.summary.avg_temp" | translate }}
     </p>
 
-    <p class="text-lg font-semibold">{{ forecast.avgtemp_c }}°</p>
+    <p class="text-lg font-semibold">{{ forecast.avgtemp_c | number: "1.0-0" }}°</p>
   </div>
 
   <div class="bg-white bg-opacity-70 rounded-md p-3 shadow-sm">

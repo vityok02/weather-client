@@ -40,9 +40,18 @@ export class WeatherDashboardComponent implements OnInit {
   ngOnInit() {
     const saved = localStorage.getItem('location');
     if (saved) {
-    this.location = JSON.parse(saved);
+      this.location = JSON.parse(saved);
     } else {
-      this.location = { lat: 50.45, lon: 30.52, name: 'Kyiv' } as SearchLocation;
+      this.location = {
+        id: 0,
+        name: 'Kyiv',
+        region: 'Kyiv Region',
+        country: 'Ukraine',
+        lat: 50.45,
+        lon: 30.52,
+        url: '',
+        fullName: 'Kyiv, Kyiv Region, Ukraine'
+      };
     }
     this.loadWeather();
   }
@@ -54,8 +63,6 @@ export class WeatherDashboardComponent implements OnInit {
 
     this.weatherService.getWeather(this.location?.lat, this.location?.lon, 7, this.currentLanguage).subscribe({
       next: (data) => {
-        console.log('Weather data loaded:', data);
-
         this.weatherResponse = data;
         this.hasError = false;
         localStorage.setItem('location', JSON.stringify(this.location));

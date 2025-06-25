@@ -1,0 +1,17 @@
+@media (max-width: 640px) {
+  .flex-row-mobile-adapt {
+    flex-direction: column !important;
+    gap: 1rem; /* відступ між ними */
+    align-items: center;
+  }
+
+  app-language-switcher {
+    width: 100% !important; /* щоб не вилітав */
+    max-width: 300px; /* або скільки треба */
+  }
+
+  app-weather-search {
+    width: 100% !important;
+    max-width: 300px;
+  }
+}
