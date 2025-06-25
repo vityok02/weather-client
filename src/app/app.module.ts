@@ -7,6 +7,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { HourlyForecastComponent } from './features/weather/components/hourly-fo
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AppMissingTranslationHandler } from './core/services/missing-translation.handler.ts.service';
+import { LanguageSwitcherComponent } from './features/weather/components/language-switcher/language-switcher.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,7 +35,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     WeatherGraphComponent,
     CurrentWeatherDetailsComponent,
     ForecastSummaryComponent,
-    HourlyForecastComponent
+    HourlyForecastComponent,
+    LanguageSwitcherComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ButtonModule,
     NgChartsModule,
     DropdownModule,
+    SelectButtonModule,
+    ScrollPanelModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {
         provide: MissingTranslationHandler,

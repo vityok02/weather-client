@@ -1,5 +1,5 @@
 import { AstronomyResponse } from './../models/astronomy/astronomy-response';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -14,16 +14,31 @@ export class WeatherService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getWeather(latitude: number, longitude: number, days: number = 1): Observable<WeatherApiResponse> {
-    const path = `${environment.weatherApiUrl}/forecast.json?key=${environment.apiKey}&q=${latitude},${longitude}&days=${days}&aqi=no&alerts=no`;
+  getWeather(latitude: number, longitude: number, days: number = 1, language?: string): Observable<WeatherApiResponse> {
+    let params = new HttpParams()
+      .set('key', environment.apiKey)
+      .set('q', `${latitude},${longitude}`)
+      .set('days', days.toString())
+      .set('aqi', 'no')
+      .set('alerts', 'no');
 
-    return this.httpClient.get<WeatherApiResponse>(path)
+    if (language) {
+      params = params.set('lang', language);
+    }
+
+    const url = `${environment.weatherApiUrl}/forecast.json`;
+
+    return this.httpClient.get<WeatherApiResponse>(url, { params });
   }
 
   getSuggestions(query: string): Observable<SearchLocation[]> {
-    const path = `${environment.weatherApiUrl}/search.json?key=${environment.apiKey}&q=${query}`;
+    let params = new HttpParams()
+      .set('key', environment.apiKey)
+      .set('q', query);
 
-    return this.httpClient.get<SearchLocation[]>(path)
+    const url = `${environment.weatherApiUrl}/search.json`;
+
+    return this.httpClient.get<SearchLocation[]>(url, { params });
   }
 
   getAstronomy(latitude: number, longitude: number): Observable<AstronomyResponse> {

@@ -20,24 +20,19 @@ export class WeatherDashboardComponent implements OnInit {
   hasError: boolean = false;
   location: SearchLocation | null = null;
   locationStr: string = '';
+  currentLanguage: string = 'en';
 
   get todayForecast() {
     return this.weatherResponse?.forecast?.forecastday?.[0]?.day;
   }
 
-  get feelsLikeTemp() {
-    return this.weatherResponse?.current?.feelslike_c;
-  }
-
   constructor(
     private weatherService: WeatherService,
-    private backgroundService: BackgroundService,
-    private translate: TranslateService) {
-    this.translate.setDefaultLang('en');
-  }
+    private backgroundService: BackgroundService) { }
 
   switchLanguage(language: string) {
-    this.translate.use(language);
+    this.currentLanguage = language;
+    this.loadWeather();
   }
 
   onSearchLocation(location: SearchLocation) {
@@ -59,7 +54,7 @@ export class WeatherDashboardComponent implements OnInit {
       return;
     }
 
-    this.weatherService.getWeather(this.location?.lat, this.location?.lon, 2).subscribe({
+    this.weatherService.getWeather(this.location?.lat, this.location?.lon, 2, this.currentLanguage).subscribe({
       next: (data) => {
         this.weatherResponse = data;
         this.hasError = false;
