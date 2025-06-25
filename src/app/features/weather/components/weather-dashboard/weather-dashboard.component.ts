@@ -1,12 +1,10 @@
-import { WeatherService } from './../../services/weather.service';
 import { Component, OnInit } from '@angular/core';
 
+import { WeatherService } from './../../services/weather.service';
 import { WeatherApiResponse } from '../../models/weather/weather-api-response';
 import { SearchLocation } from '../../models/weather/search-location';
 import { HourlyWeather } from '../../models/weather/hourly-weather';
-import { AstronomyResponse } from '../../models/astronomy/astronomy-response';
 import { BackgroundService } from '../../services/background.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-weather-dashboard',
@@ -16,7 +14,6 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class WeatherDashboardComponent implements OnInit {
   weatherResponse!: WeatherApiResponse;
-  astronomyResponse!: AstronomyResponse;
   hasError: boolean = false;
   location: SearchLocation | null = null;
   locationStr: string = '';
@@ -43,10 +40,11 @@ export class WeatherDashboardComponent implements OnInit {
   ngOnInit() {
     const saved = localStorage.getItem('location');
     if (saved) {
-      this.location = JSON.parse(saved);
-      this.loadWeather();
-      this.loadAstronomy();
+    this.location = JSON.parse(saved);
+    } else {
+      this.location = { lat: 50.45, lon: 30.52, name: 'Kyiv' } as SearchLocation;
     }
+    this.loadWeather();
   }
 
   loadWeather() {
@@ -70,24 +68,6 @@ export class WeatherDashboardComponent implements OnInit {
     });
   }
 
-  loadAstronomy() {
-    if (!this.location) {
-      return;
-    }
-
-    this.weatherService.getAstronomy(this.location?.lat, this.location?.lon).subscribe({
-      next: (data) => {
-        this.astronomyResponse = data;
-        this.hasError = false;
-      },
-      error: (error) => {
-        console.error('Error fetching astronomy data:', error);
-        this.astronomyResponse = null!;
-        this.hasError = true;
-      }
-    });
-  }
-
   getHours(): HourlyWeather[] {
     const hours: HourlyWeather[] = this.weatherResponse.forecast.forecastday[0].hour
       .filter(h => h.time_epoch > this.weatherResponse.current.last_updated_epoch)
@@ -102,6 +82,6 @@ export class WeatherDashboardComponent implements OnInit {
 
   getBackgroundImagePath(): string {
     return this.backgroundService
-      .getBackgroundImagePath(this.astronomyResponse.astronomy.astro);
+      .getBackgroundImagePath(this.weatherResponse.forecast.forecastday[0].astro);
   }
 }
