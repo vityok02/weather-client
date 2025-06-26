@@ -17,8 +17,8 @@ Live: [Weather App](https://vityok02.github.io/weather-client/)
 ## Getting Started
 
 ``` bash
-git clone https://github.com/your-username/weather-dashboard.git
-cd weather-dashboard
+git clone https://github.com/vityok02/weather-client.git
+cd weather-client
 npm install
 ng serve
 ```
