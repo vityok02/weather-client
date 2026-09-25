@@ -25,14 +25,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate environment.prod.ts
+      - name: Generate environment files
         run: |
-          cat > src/environments/environment.prod.ts <<EOF
+          cat > src/environments/environment.ts <<EOF
           export const environment = {
             weatherApiUrl: 'https://api.weatherapi.com/v1',
             apiKey: '${WEATHER_API_KEY}'
           };
           EOF
+          cp src/environments/environment.ts src/environments/environment.prod.ts
         env:
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
